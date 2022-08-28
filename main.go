@@ -7,8 +7,13 @@ func main() {
 		"bird",
 		"dog",
 		"parrot",
+		"parrot",
+		"parrot",
+		"parrot",
+		"parrot",
 		"cat",
 	}
 
 	removeduplicate(input)
+	callResponse()
 }

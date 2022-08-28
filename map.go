@@ -27,7 +27,9 @@ func findhowmuchmatch() {
 }
 
 func addMoreMoneyToproduts() {
-	pricelist := map[string]int{"хлеб": 50, "молоко": 100,
+	pricelist := map[string]int{
+		"хлеб":     50,
+		"молоко":   100,
 		"масло":    200,
 		"колбаса":  500,
 		"соль":     20,
@@ -73,10 +75,8 @@ func search(arr []int, k int) []int {
 }
 
 func removeduplicate(input []string) []string {
-
 	output := make([]string, len(input))
 	copy(output, input)
-
 	inputSet := make(map[string]struct{}, len(input))
 	outputIdx := 0
 	for _, v := range input {
