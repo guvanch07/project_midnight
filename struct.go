@@ -28,6 +28,7 @@ func callStructToSerilize() {
 	fmt.Printf("Man %v", string(jsMan))
 }
 
+// /task 2
 const rawResp = `
 {
     "header": {
@@ -85,4 +86,40 @@ func callResponse() {
 		panic(err)
 	}
 	fmt.Printf("%+v\n", resp)
+}
+
+// /////////////////////////////////////////////
+type PersonStruct struct {
+	// Имя
+	Name string
+	// Количество детей
+	Email string
+	// Возраст
+	dateOfBirth time.Time
+}
+
+// /создание конструктора
+func newPersonStruct(name, email string, dobYear, dobMonth, dobDate int) PersonStruct {
+	return PersonStruct{
+		Name:        name,
+		Email:       email,
+		dateOfBirth: time.Date(dobYear, time.Month(dobMonth), dobDate, 0, 0, 0, 0, time.UTC),
+	}
+}
+
+// func NewPersonStruct(name, email string, dobYear, dobMonth, dobDate int) (PersonStruct, error) {
+// }
+
+// ананимнав структура
+func anonimousStruct() {
+	req := struct {
+		NameContains string `json:"name_contains"`
+		Offset       int    `json:"offset"`
+		Limit        int    `json:"limit"`
+	}{
+		NameContains: "Иван",
+		Limit:        50,
+	}
+	reqRaw, _ := json.Marshal(req)
+	fmt.Println(string(reqRaw))
 }
