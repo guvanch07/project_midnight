@@ -1,4 +1,5 @@
-package main
+package map_ex
+
 
 import "fmt"
 
