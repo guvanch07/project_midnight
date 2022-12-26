@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	good()
+	minimumFromFour()
 }
 
 func testStepik() {
