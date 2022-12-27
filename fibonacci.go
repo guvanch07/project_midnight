@@ -1,6 +1,8 @@
 package main
 
-import "math"
+import (
+	"math"
+)
 
 func fibonacciRec(n int) int {
 	if n <= 1 {
@@ -24,4 +26,12 @@ func fibonacciMath(n int) int {
 	fib := math.Round(math.Pow((1+math.Sqrt(5))/2, float64(n)) / math.Sqrt(5))
 	return int(fib)
 
+}
+
+func sumInt(a ...int) (int, int) {
+	sum := 0
+	for _, x := range a {
+		sum += x
+	}
+	return len(a), sum
 }

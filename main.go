@@ -7,7 +7,8 @@ import (
 )
 
 func main() {
-	minimumFromFour()
+	a, b := sumInt(1, 0)
+	fmt.Println(a, b)
 }
 
 func testStepik() {
