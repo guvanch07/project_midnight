@@ -7,7 +7,9 @@ import (
 )
 
 func main() {
-	a, b := sumInt(1, 0)
+	a := 2
+	b := 4
+	testPointerStar(&a, &b)
 	fmt.Println(a, b)
 }
 
