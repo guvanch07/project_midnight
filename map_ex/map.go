@@ -1,6 +1,5 @@
 package map_ex
 
-
 import "fmt"
 
 func mappers() {

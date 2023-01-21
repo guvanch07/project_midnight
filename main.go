@@ -7,10 +7,7 @@ import (
 )
 
 func main() {
-	a := 2
-	b := 4
-	testPointerStar(&a, &b)
-	fmt.Println(a, b)
+	exemaplerune()
 }
 
 func testStepik() {

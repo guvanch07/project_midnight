@@ -36,3 +36,13 @@ func testPointerStar(x1 *int, x2 *int) {
 	*x1, *x2 = *x2, *x1
 	fmt.Println(*x1, *x2)
 }
+
+func PointerInPointer() {
+	a := 200
+	b := &a
+	*b++
+	c := &b
+	**c++ // указатель на указатель
+	fmt.Println(a)
+ }
+ 
