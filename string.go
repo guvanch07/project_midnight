@@ -4,8 +4,8 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-
-	//"strings"
+	"regexp"
+	"strings"
 	"unicode"
 )
 
@@ -17,6 +17,24 @@ func exemaplerune() {
 			fmt.Print(string(char))
 		}
 	}
+}
+
+func findCountofString() {
+	var s string
+	fmt.Scan(&s)
+	for _, v := range s {
+		c := strings.Count(s, string(v))
+		if c == 1 {
+			fmt.Print(string(v))
+		}
+	}
+}
+
+func checkPassword() bool {
+	var s string
+	fmt.Scan(&s)
+	reg := regexp.MustCompile(`^[a-zA-Z0-9]{5,}$`).MatchString
+	return reg(s)
 }
 
 func countAllString() {

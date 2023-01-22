@@ -7,7 +7,12 @@ import (
 )
 
 func main() {
-	exemaplerune()
+
+	if checkPassword() {
+		fmt.Println("Ok")
+	} else {
+		fmt.Println("Wrong password")
+	}
 }
 
 func testStepik() {
