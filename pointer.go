@@ -17,7 +17,7 @@ func one(xPt *int) {
 func pointOne() {
 	xPtr := new(int)
 	one(xPtr)
-	fmt.Println(*xPtr) // x is 1
+	fmt.Println(xPtr) // x is 1
 }
 
 func changer(i *int) {
@@ -44,5 +44,4 @@ func PointerInPointer() {
 	c := &b
 	**c++ // указатель на указатель
 	fmt.Println(a)
- }
- 
+}

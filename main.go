@@ -7,16 +7,31 @@ import (
 )
 
 func main() {
+	squr()
+}
 
-	if checkPassword() {
-		fmt.Println("Ok")
-	} else {
-		fmt.Println("Wrong password")
+func maxDigit() {
+	var a string
+	fmt.Scan(&a)
+	var r rune
+	for _, v := range a {
+		if r < v {
+			r = v
+		}
+	}
+	fmt.Println(string(r))
+}
+
+func squr() {
+	var a string
+	fmt.Scan(&a)
+	for i := 0; i < len(a); i++ {
+		n := a[i] - 48
+		fmt.Print(n * n)
 	}
 }
 
 func testStepik() {
-
 	var a int
 	var b int
 	fmt.Scan(&a, &b)

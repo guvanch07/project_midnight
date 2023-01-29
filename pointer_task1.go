@@ -12,7 +12,7 @@ func taskPointes1() {
 	fmt.Println("Interaction counter")
 
 	cnt := 0
-	for {
+	for cnt < 10 {
 		fmt.Print("-> ")
 		// Считываем введённую пользователем строку. Программа ждёт, пока пользователь введёт строку
 		_, err := reader.ReadString('\n')
@@ -28,4 +28,5 @@ func taskPointes1() {
 
 func f(cnt *int) {
 	*cnt++
+	fmt.Println(*cnt)
 }

@@ -9,11 +9,12 @@ import (
 
 func isPolindrome1(str string) bool {
 	bt := []rune(str)
-	fmt.Println(bt)
+
 	for i := len(bt) - 1; i >= 0; i-- {
 		bt = append(bt, bt[i])
 	}
 	fmt.Println(string(bt))
+
 	return str == string(bt)
 }
 
