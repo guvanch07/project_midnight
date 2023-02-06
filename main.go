@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	squr()
+	findPopulation()
 }
 
 func maxDigit() {
