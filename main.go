@@ -3,11 +3,37 @@ package main
 import (
 	"fmt"
 	"math"
+	"strconv"
 	"strings"
 )
 
+func deleteOdd(n uint) uint {
+	s := strconv.Itoa(int(n))
+	var c string
+
+	for _, v := range s {
+		d, err := strconv.Atoi(string(v))
+
+		if err != nil {
+			panic(d)
+		}
+		if d%2 == 0 {
+			if d > 0 {
+				str := strconv.Itoa(d)
+				c += str
+			}
+		}
+	}
+	result, _ := strconv.Atoi(c)
+	fmt.Println(result)
+	if result == 0 {
+		return 100
+	}
+	return uint(result)
+}
+
 func main() {
-	findPopulation()
+	clourje()
 }
 
 func maxDigit() {
