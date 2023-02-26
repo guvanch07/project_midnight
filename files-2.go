@@ -119,3 +119,25 @@ func findCvs42() {
 		fmt.Printf("Какая-то ошибка: %v\n", err)
 	}
 }
+
+func findZero() {
+	file, err := os.Open("./task/nums.txt")
+	if err != nil {
+		return
+	}
+	defer file.Close()
+	r := bufio.NewReader(file)
+	var count int
+	for {
+		str, err := r.ReadString(';')
+		if err != nil {
+			break
+		}
+		count++
+
+		if str == "0;" {
+			fmt.Print(count)
+			break
+		}
+	}
+}

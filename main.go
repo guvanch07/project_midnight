@@ -1,128 +1,73 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
-	"math"
-	"strings"
+	"io/ioutil"
+	"net/http"
+	"os"
 )
 
+type ResponseData []ResponseDatum
+
+func UnmarshalResponseData(data []byte) (ResponseData, error) {
+	var r ResponseData
+	err := json.Unmarshal(data, &r)
+	return r, err
+}
+
+type ResponseDatum struct {
+	GlobalID       int     `json:"global_id"`
+	SystemObjectID string  `json:"system_object_id"`
+	SignatureDate  string  `json:"signature_date"`
+	Razdel         Razdel  `json:"Razdel"`
+	Kod            *string `json:"Kod,omitempty"`
+	Name           string  `json:"Name"`
+	Idx            string  `json:"Idx"`
+	Nomdescr       *string `json:"Nomdescr,omitempty"`
+}
+
+type Razdel string
+
 func main() {
-
+	fromNetwork()
 }
 
-func maxDigit() {
-	var a string
-	fmt.Scan(&a)
-	var r rune
-	for _, v := range a {
-		if r < v {
-			r = v
-		}
+func fetchLocaly() {
+	file, err := os.Open("data.json")
+	if err != nil {
+		fmt.Println(err)
 	}
-	fmt.Println(string(r))
+	data, err := ioutil.ReadAll(file)
+	if err != nil {
+		fmt.Println(err)
+	}
+	res, err := UnmarshalResponseData(data)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+	sum := 0
+	for i := 0; i < len(res); i++ {
+		sum += int(res[i].GlobalID)
+	}
+	fmt.Println(sum)
 }
 
-func squr() {
-	var a string
-	fmt.Scan(&a)
-	for i := 0; i < len(a); i++ {
-		n := a[i] - 48
-		fmt.Print(n * n)
+func fromNetwork() {
+	var StructData ResponseData
+	var urlData = "https://raw.githubusercontent.com/semyon-dev/stepik-go/master/work_with_json/data-20190514T0100.json"
+	sum := 0
+	resp, err := http.Get(urlData)
+	if err != nil {
+		fmt.Println(err)
 	}
-}
-
-func testStepik() {
-	var a int
-	var b int
-	fmt.Scan(&a, &b)
-
-	j := 0
-	d := 0
-
-	for i := 0; i <= a; i++ {
-
+	defer resp.Body.Close()
+	r := json.NewDecoder(resp.Body)
+	r.Decode(&StructData)
+	for _, val := range StructData {
+		sum += val.GlobalID
 	}
-	fmt.Print(j, d)
+	fmt.Println("Result:", sum)
 
-}
-
-func m() {
-	var x int
-	var p int
-	var y int
-
-	fmt.Scan(&x)
-	fmt.Scan(&p)
-	fmt.Scan(&y)
-
-	k := 0
-	x = x * 100
-	y = y * 100
-	p = p + 100
-
-	for x < y {
-		x = (x * p) / 100
-		k++
-	}
-	fmt.Println(k)
-}
-
-func gocal() {
-	var a float64
-
-	fmt.Scan(&a)
-
-	if a <= 0 {
-		fmt.Printf("число %2.2f не подходит\n", a)
-	} else if a >= 10000 {
-		fmt.Printf("%e\n", a)
-	} else {
-		doub := math.Pow(a, 2)
-		fmt.Printf("%.4f\n", doub)
-	}
-}
-
-func writeAllNum() {
-	var n int
-	fmt.Scan(&n)
-	slice := make([]int, n)
-	var sliceOdd []int
-
-	if n >= 0 && n <= 100 {
-		for i := range slice {
-			_, _ = fmt.Scan(&slice[i])
-			if i%2 == 0 {
-				sliceOdd = append(sliceOdd, slice[i])
-			}
-		}
-	}
-	fmt.Println(strings.Trim(fmt.Sprint(sliceOdd), "[]"))
-}
-
-func newSl() {
-	var n int
-	fmt.Scan(&n)
-
-	m := make([]int, n)
-	for i := 0; i < n; i++ {
-		fmt.Scan(&m[i])
-	}
-
-	for i := 0; i < n; i += 2 {
-		fmt.Print(m[i], " ")
-	}
-}
-
-func findCount() {
-	var n int
-	count := 1
-	fmt.Scan(&n)
-	for i := 0; i < n; i++ {
-		var a int
-		fmt.Scan(&a)
-		if a <= 0 {
-			count++
-		}
-	}
-	fmt.Println(count)
 }
