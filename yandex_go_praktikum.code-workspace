@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "yandex_go_praktikum",
+			"path": "."
+		},
+		{
+			"name": "task",
+			"path": "../../../Downloads/task"
+		}
+	],
+	"settings": {}
+}
